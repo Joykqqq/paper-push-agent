@@ -1,0 +1,16 @@
+# 忽略文件
+.env
+*.pyc
+__pycache__/
+*.log
+*.txt.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统
+.DS_Store
+Thumbs.db
