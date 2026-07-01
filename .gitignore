@@ -4,6 +4,9 @@
 __pycache__/
 *.log
 *.txt.bak
+hf_debug.html
+article_snippet.txt
+debug_hf.py
 
 # IDE
 .vscode/

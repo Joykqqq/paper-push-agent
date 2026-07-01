@@ -1,0 +1,35 @@
+name: 每日AI论文推送
+
+on:
+  # 每天北京时间14:00自动运行（UTC 06:00）
+  schedule:
+    - cron: '0 6 * * *'
+  
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v3
+    
+    - name: 设置 Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: 安装依赖
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: 运行推送脚本
+      env:
+        DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        SERVERCHAN_SENDKEY: ${{ secrets.SERVERCHAN_SENDKEY }}
+        PAPER_COUNT: '3'
+        TARGET_HOUR: '14'
+      run: python main.py
